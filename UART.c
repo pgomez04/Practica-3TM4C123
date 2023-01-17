@@ -1,26 +1,27 @@
 #include "lib/include.h"
 
 extern void Configurar_UART1(void)
+//Pagina 902 tiva chica
 {
     SYSCTL->RCGCUART  = (1<<1);   //Paso 1 (RCGCUART) pag.344 UART/modulo1 0->Disable 1->Enable
-    SYSCTL->RCGCGPIO |= (1<<2);     //Paso 2 (RCGCGPIO) pag.340 Enable clock port C
+    SYSCTL->RCGCGPIO |= (1<<2);     //Paso 2 (RCGCGPIO) pag.340 Se encuentra en el puerto C 
     //(GPIOAFSEL) pag.671 Enable alternate function
-    GPIOC->AFSEL = (1<<1) | (1<<0);
+    GPIOC->AFSEL = (1<<1) | (1<<0); //No controlados por registros de GPIO
     //GPIO Port Control (GPIOPCTL) PC4-> U1Rx PC5-> U1Tx pag.688
     GPIOC->PCTL = (GPIOC->PCTL&0xFFFFFF00) | 0x00000011;// (1<<0) | (1<<4);//0x00000011
     // GPIO Digital Enable (GPIODEN) pag.682
-    GPIOA->DEN = (1<<5) | (1<<4);//PC5 PC4
-    //UART1 UART Control (UARTCTL) pag.918 DISABLE!!
+    GPIOC->DEN = (1<<5) | (1<<4);//PC5 PC4
+    //UART1 UART Control (UARTCTL) pag.918 DISABLE!!, deshabilito para configurar 
     UART1->CTL = (0<<9) | (0<<8) | (0<<0);
 
     // UART Integer Baud-Rate Divisor (UARTIBRD) pag.914
     /*
     BRD = 25,000,000 / (16*57600) = 27.1267
-    UARTFBRD[DIVFRAC] = integer(.1267 * 64 + 0.5)
+    UARTFBRD[DIVFRAC] = integer(.1267 * 64 + 0.5)=8.6088
     */
     UART1->IBRD = 27;
     // UART Fractional Baud-Rate Divisor (UARTFBRD) pag.915
-    UART1->FBRD = 7;
+    UART1->FBRD = 9; //redondeado 
     //  UART Line Control (UARTLCRH) pag.916
     UART1->LCRH = (0x3<<5)|(1<<4);
     //  UART Clock Configuration(UARTCC) pag.939

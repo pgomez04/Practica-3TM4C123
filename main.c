@@ -6,7 +6,7 @@ int main(void)
     char c='5';
     //char b='a';
     Configurar_PLL(_25MHZ);  //Confiuracion de velocidad de reloj
-    Configurar_UART1();//Yo FCLK 20MHZ Baudrate 9600
+    Configurar_UART1();// FCLK 25MHz, baud rate 57600
 
     //Experimento 1
     //  Configurar_UART1(); //Jorge,Alberto,Navarro,Saul,Fabela -fclk 25MHZ Baud-rate 57600
