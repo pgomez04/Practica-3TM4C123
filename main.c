@@ -1,11 +1,15 @@
+//Practica 3
+//Mendiante comunicacion UART enviar un nombre, recibirlo e invertilo 
+//y reenviarlo con numeros consecutivos 
 #include "lib/include.h"
 
 int main(void)
 {
     uint16_t valor = 0;
-    char c='5';
-    //char b='a';
+    char c='5'
+
     Configurar_PLL(_25MHZ);  //Confiuracion de velocidad de reloj
+    Configurar_GPIO();
     Configurar_UART1();// FCLK 25MHz, baud rate 57600
 
     //Experimento 1
@@ -16,9 +20,8 @@ int main(void)
     //  Configurar_UART3(); //Jesus,Yesica,Carlos,Dulce,Rodolfo,Leonardo -fclk 80MHZ Baud-rate 19200
     //  Configurar_UART2(); //Andrea,Avila,Pamela,Paulina -fclk 50MHZ Baud-rate 57600
     //  Configurar_UART5(); //Hector,Cecilia,Carolina,Jozzafat -fclk 40MHZ Baud-rate 28800
-    Configurar_GPIO();
-   // Homogeneidad();
-    //printString("Holis Bolis");
+    
+    
     printChar(c);
     //printChar(b);
     printString("\n");

@@ -39,15 +39,15 @@ extern char readChar(void)
     //UART DR data 906
     int v;
     char c;
-    while((UART0->FR & (1<<4)) != 0 );
-    v = UART0->DR & 0xFF;
+    while((UART1->FR & (1<<4)) != 0 );
+    v = UART1->DR & 0xFF;
     c = v;
     return c;
 }
 extern void printChar(char c)
 {
-    while((UART0->FR & (1<<5)) != 0 );
-    UART0->DR = c;
+    while((UART1->FR & (1<<5)) != 0 );
+    UART1->DR = c;
 }
 extern void printString(char* string)
 {
@@ -77,10 +77,3 @@ extern char * readString(char delimitador)
    return string;
 
 }
-//Experimento 2
-
-//El envio es su nombre  (rave) 
-
-// invertirlo y regresarlo con numeros consecutivos
-// entre letras (e1v2a3r) 
-
