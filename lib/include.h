@@ -1,4 +1,4 @@
-
+//libreria 
 #ifndef LIB_INCLUDE_H_
 #define LIB_INCLUDE_H_
 
@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
+ 
 #define _40MHZ 9
 #define _20MHZ 19
 #define _10MHZ 39
