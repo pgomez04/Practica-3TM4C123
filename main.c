@@ -3,10 +3,45 @@
 //y reenviarlo con numeros consecutivos 
 #include "lib/include.h"
 
+//LECTURA DE CADENA 
+char *leer_nombre(char delim, int *ptr)
+{
+    char letra;
+    static char arreglo[50];
+    int contador = 0;
+    letra = readChar();  
+    while (letra != delim)
+    {
+        arreglo[contador] = letra;
+        letra = readChar();
+        contador ++;
+    }
+    *ptr = strlen(arreglo );
+    return &arreglo[0];
+}
+
+//INVERTIR CADENA
+char *invertir_nombre(char *nombre, int longi)
+{
+    static char nombre_invertido[50];
+    int cont = 0;
+    int index = 0; 
+    for (int i = longi; i > 0; i--)
+    {
+        nombre_invertido[cont] = *(nombre + (i -1));
+        nombre_invertido[cont + 1] = index + '0';
+        index ++; 
+        cont = cont + 2;
+    }
+    nombre_invertido[cont - 1] = '\n'; 
+    return &nombre_invertido[0];
+}
+
+
 int main(void)
 {
     uint16_t valor = 0;
-    char c='5'
+    char c='5';
 
     Configurar_PLL(_25MHZ);  //Confiuracion de velocidad de reloj
     Configurar_GPIO();
@@ -21,12 +56,9 @@ int main(void)
     //  Configurar_UART2(); //Andrea,Avila,Pamela,Paulina -fclk 50MHZ Baud-rate 57600
     //  Configurar_UART5(); //Hector,Cecilia,Carolina,Jozzafat -fclk 40MHZ Baud-rate 28800
     
-    
-    printChar(c);
-    //printChar(b);
-    printString("\n");
-   // char *arr = readString(',');
-   // printString(&arr[0]);
+    int longitud;
+    longitud = 0;
+
     while(1)
     {
          c = readChar();
@@ -56,6 +88,9 @@ int main(void)
                  printChar((char)valor);
                  GPIOF->DATA = (0<<1) | (0<<2) | (0<<3);
                  break;
+    char *nombre = leer_nombre(',',&longitud);
+    char *nombre_invertido = invertir_nombre(nombre,longitud);
+    printString(nombre_invertido);
          }
     }
 }
