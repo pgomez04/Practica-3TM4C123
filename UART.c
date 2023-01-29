@@ -8,7 +8,7 @@ extern void Configurar_UART1(void)
     //(GPIOAFSEL) pag.671 Enable alternate function
     GPIOC->AFSEL = (1<<1) | (1<<0); //No controlados por registros de GPIO
     //GPIO Port Control (GPIOPCTL) PC4-> U1Rx PC5-> U1Tx pag.688
-    GPIOC->PCTL = (GPIOC->PCTL&0xFFFFFF00) | 0x00000011;// (1<<0) | (1<<4);//0x00000011
+    GPIOC->PCTL = (GPIOC->PCTL&0xFFFFFF00) | 0x00000011;// (1<<5) | (1<<4);//0x00000011
     // GPIO Digital Enable (GPIODEN) pag.682
     GPIOC->DEN = (1<<5) | (1<<4);//PC5 PC4
     //UART1 UART Control (UARTCTL) pag.918 DISABLE!!, deshabilito para configurar 
